@@ -95,15 +95,16 @@ exports.recoverPass = async (req, res) => {
             <br>
             <p>El link tiene una duración de 15 minutos</p>
             <p><b>Atte: Knowledge Academy</b></p>` // html body
-        } catch(error){
-            res.status(500).json{
-                msg:'Internal server error'
-            }
-        }
         });
 
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    }catch(error){
+        res.status(500).json({
+            error,
+            msg:'Internal server error'
+        })
+    }
 
     }
 
