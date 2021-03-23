@@ -20,7 +20,7 @@ app.use('/api/courses', coursesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/comments', commentsRoutes);
 
+app.get('/',(req,res)=>res.send('Hola mi rey'))
 app.listen(PORT, ()=> {
     console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })
-app.get('/',(res)=>res.send('Hola mi rey'))
