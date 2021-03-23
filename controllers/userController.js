@@ -72,8 +72,9 @@ exports.recoverPass = async (req, res) => {
 
 
     async function main(tokenPass, user) {
-        let testAccount = await nodemailer.createTestAccount();
-        let transporter = nodemailer.createTransport({
+        try{
+            let testAccount = await nodemailer.createTestAccount();
+            let transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587, //puerto unico
             secure: false,
@@ -81,7 +82,7 @@ exports.recoverPass = async (req, res) => {
                 user: 'knowledgeacademyrc@gmail.com',
                 pass: 'academyRC',
             }
-
+            
         });
 
         // send mail with defined transport object
@@ -94,6 +95,11 @@ exports.recoverPass = async (req, res) => {
             <br>
             <p>El link tiene una duración de 15 minutos</p>
             <p><b>Atte: Knowledge Academy</b></p>` // html body
+        } catch(error){
+            res.status(500).json{
+                msg:'Internal server error'
+            }
+        }
         });
 
         console.log("Message sent: %s", info.messageId);
