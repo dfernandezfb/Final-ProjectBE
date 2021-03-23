@@ -23,3 +23,4 @@ app.use('/api/comments', commentsRoutes);
 app.listen(PORT, ()=> {
     console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })
+app.get('/',(res)=>res.send('Hola mi rey'))
